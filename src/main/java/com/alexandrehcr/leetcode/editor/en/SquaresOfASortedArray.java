@@ -45,17 +45,19 @@ public class SquaresOfASortedArray {
     class Solution {
         public int[] sortedSquares(int[] nums) {
             int n = nums.length;
+            int index;
+            int i = 0;
+            int j = index = n - 1;
             int[] output = new int[n];
-            int low = 0;
-            int high = n - 1;
 
-            for (int i = n - 1; i >= 0; i--) {
-                if (Math.abs(nums[low]) > Math.abs(nums[high])) {
-                    output[i] = nums[low] * nums[low];
-                    low++;
-                } else {
-                    output[i] = nums[high] * nums[high];
-                    high--;
+            while (i <= j) {
+                if (Math.abs(nums[i]) > Math.abs(nums[j])){
+                    output[index--] = nums[i] * nums[i];
+                    i++;
+                }
+                else {
+                    output[index--] = nums[j] * nums[j];
+                    j--;
                 }
             }
             return output;
