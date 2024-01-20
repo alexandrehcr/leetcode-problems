@@ -5,5 +5,5 @@
 
 target/
 src/test/
-src/main/java/ApiSearch.java
+src/main/java/ApiTests.java
 src/main/java/com/alexandrehcr/leetcode/editor/en/doc
