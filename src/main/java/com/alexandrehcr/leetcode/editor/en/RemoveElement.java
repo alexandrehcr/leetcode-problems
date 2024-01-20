@@ -68,20 +68,16 @@ public class RemoveElement {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int removeElement(int[] nums, int val) {
-            int k = nums.length - 1;
-            int i = 0;
-            while (k >= i) {
-                if (nums[k] == val) {
-                    k--;
-                    continue;
-                }
-                if (nums[i] == val) {
-                    nums[i] = nums[k--];
-                }
-                i++;
+            int index = 0;
+            for (int i = 0; i < nums.length; i++){
+                if (nums[i] != val)
+                    nums[index++] = nums[i];
             }
-            return k + 1; // k is index based
+            return index;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
+
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
 }
