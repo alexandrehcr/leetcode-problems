@@ -55,17 +55,9 @@ public class HeightChecker {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int heightChecker(int[] heights) {
-            int[] original = Arrays.stream(heights).toArray();
-            for (int i = 0; i < heights.length; i++) {
-                for (int j = i + 1; j < heights.length; j++) {
-                    if (heights[i] > heights[j]) {
-                        int temp = heights[i];
-                        heights[i] = heights[j];
-                        heights[j] = temp;
-                    }
-                }
-            }
             int misses = 0;
+            int[] original = Arrays.stream(heights).toArray();
+            Arrays.sort(heights);
             for (int i = 0; i < heights.length; i++) {
                 if (heights[i] != original[i])
                     misses++;
@@ -75,10 +67,6 @@ public class HeightChecker {
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
-    // Time Complexity: O(n^2). Array is sorted using bubble sort algorithm.
+    // Time Complexity: O(n log(n)). Array is sorted using Arrays#sort().
     // Space Complexity: O(n). The space allocated grows as the input grows.
-
-    // Even though I could reduce the time complexity to O(n log(n)) using Arrays#sort(),
-    // I opted for sort it manually using the only sort algorithm I know. After all,
-    // the purpose is to challenge myself to do my best with what I know.
 }
