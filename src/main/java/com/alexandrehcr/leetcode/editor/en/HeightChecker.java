@@ -48,25 +48,26 @@ All indices match.
 
 package com.alexandrehcr.leetcode.editor.en;
 
-import java.util.Arrays;
-
 public class HeightChecker {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int heightChecker(int[] heights) {
+            int[] heightsFreq = new int[101]; // 1 <= heights[i] <= 100 is a constraint
+            for (int height : heights)
+                heightsFreq[height]++;
             int misses = 0;
-            int[] original = Arrays.stream(heights).toArray();
-            Arrays.sort(heights);
+            int height = 0;
             for (int i = 0; i < heights.length; i++) {
-                if (heights[i] != original[i])
-                    misses++;
+                while (heightsFreq[height] == 0) height++;
+                if (heights[i] != height) misses++;
+                heightsFreq[height]--;
             }
             return misses;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
 
-    // Time Complexity: O(n log(n)). Array is sorted using Arrays#sort().
-    // Space Complexity: O(n). The space allocated grows as the input grows.
+    // Time Complexity: O(n). Input array is traversed twice.
+    // Space Complexity: O(1). No extra space is allocated as the input grows.
 }
